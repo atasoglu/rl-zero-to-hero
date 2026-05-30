@@ -1,0 +1,19 @@
+[project]
+name = "009-reinforce"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "REINFORCE: Monte Carlo policy gradient using full-episode returns"
+dependencies = [
+    "rl-common",
+    "gymnasium[classic-control]==1.1.1",
+    "torch>=2.0",
+    "numpy>=2.0",
+    "matplotlib>=3.9",
+    "tqdm>=4.66",
+]
+
+[tool.uv.sources]
+rl-common = { path = "../common", editable = true }
+
+[dependency-groups]
+dev = ["ipykernel"]

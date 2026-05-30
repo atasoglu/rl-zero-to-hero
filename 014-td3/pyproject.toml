@@ -1,0 +1,19 @@
+[project]
+name = "014-td3"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "Twin Delayed Deep Deterministic Policy Gradient (TD3): double critic and delayed policy updates to fix DDPG instability"
+dependencies = [
+    "rl-common",
+    "gymnasium[classic-control,mujoco]==1.1.1",
+    "torch>=2.0",
+    "numpy>=2.0",
+    "matplotlib>=3.9",
+    "tqdm>=4.66",
+]
+
+[tool.uv.sources]
+rl-common = { path = "../common", editable = true }
+
+[dependency-groups]
+dev = ["ipykernel"]

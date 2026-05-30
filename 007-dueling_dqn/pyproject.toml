@@ -1,0 +1,20 @@
+[project]
+name = "007-dueling-dqn"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "Dueling DQN: separate value and advantage streams for better state evaluation"
+dependencies = [
+    "rl-common",
+    "gymnasium[classic-control,box2d,atari]==1.1.1",
+    "ale-py>=0.10",
+    "numpy>=2.0",
+    "torch>=2.0",
+    "matplotlib>=3.9",
+    "tqdm>=4.66",
+]
+
+[tool.uv.sources]
+rl-common = { path = "../common", editable = true }
+
+[dependency-groups]
+dev = ["ipykernel"]
