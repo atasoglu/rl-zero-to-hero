@@ -106,7 +106,7 @@ if __name__ == "__main__":
     parser.add_argument("--episodes", type=int, default=500, help="number of training episodes")
     parser.add_argument("--render-interval", type=int, default=0, metavar="N",
                         help="render every N episodes (0=off)")
-    parser.add_argument("--watch", type=int, default=0, metavar="N",
+    parser.add_argument("--watch", type=int, default=5, metavar="N",
                         help="watch trained agent for N episodes after training")
     args = parser.parse_args()
 
