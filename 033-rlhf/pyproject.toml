@@ -1,0 +1,20 @@
+[project]
+name = "033-rlhf"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "RLHF (InstructGPT style): fine-tune an LLM with PPO using a learned reward model"
+dependencies = [
+    "rl-common",
+    "torch>=2.1",
+    "transformers>=4.40",
+    "datasets>=2.19",
+    "accelerate>=0.29",
+    "tqdm>=4.66",
+    "matplotlib>=3.9",
+]
+
+[tool.uv.sources]
+rl-common = { path = "../common", editable = true }
+
+[dependency-groups]
+dev = ["ipykernel"]

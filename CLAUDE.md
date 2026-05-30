@@ -70,3 +70,18 @@ Every module follows the same pattern:
 ### Extending `rl-common`
 
 Add new utilities to `common/rl_common/`, export them from `common/rl_common/__init__.py`. Because all modules use an editable install, changes are picked up immediately without re-syncing.
+
+## Code Style
+
+### argparse
+
+Every `add_argument` call must include a `help=` string. This is required for two reasons: it makes `--help` output self-documenting, and `ArgumentDefaultsHelpFormatter` only appends `(default: …)` to arguments that have a help string.
+
+```python
+# correct
+p.add_argument("--lr", type=float, default=3e-4,
+               help="AdamW learning rate")
+
+# wrong — default value is hidden from --help output
+p.add_argument("--lr", type=float, default=3e-4)
+```
