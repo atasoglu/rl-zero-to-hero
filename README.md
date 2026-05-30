@@ -24,7 +24,7 @@ Each module is an independent `uv` project. To run a module:
 ```bash
 cd 001-q_learning
 uv sync
-uv run python src/main.py
+uv run python src/train.py
 ```
 
 Every module directory contains:
