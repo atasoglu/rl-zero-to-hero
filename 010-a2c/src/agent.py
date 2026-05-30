@@ -2,10 +2,10 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.distributions import Categorical
+from torch.distributions import Categorical, Normal
 
 
-class ActorCritic(nn.Module):
+class DiscreteActorCritic(nn.Module):
     def __init__(self, obs_dim: int, n_actions: int, hidden_dim: int = 256):
         super().__init__()
         self.shared = nn.Sequential(
@@ -19,16 +19,35 @@ class ActorCritic(nn.Module):
 
     def forward(self, x):
         features = self.shared(x)
-        logits = self.actor(features)
-        value = self.critic(features).squeeze(-1)
-        return logits, value
+        return Categorical(logits=self.actor(features)), self.critic(features).squeeze(-1)
+
+
+class ContinuousActorCritic(nn.Module):
+    def __init__(self, obs_dim: int, action_dim: int, hidden_dim: int = 256):
+        super().__init__()
+        self.shared = nn.Sequential(
+            nn.Linear(obs_dim, hidden_dim),
+            nn.Tanh(),
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.Tanh(),
+        )
+        self.actor_mean = nn.Linear(hidden_dim, action_dim)
+        self.actor_log_std = nn.Parameter(torch.zeros(action_dim))
+        self.critic = nn.Linear(hidden_dim, 1)
+
+    def forward(self, x):
+        features = self.shared(x)
+        mean = self.actor_mean(features)
+        std = self.actor_log_std.exp().expand_as(mean)
+        return Normal(mean, std), self.critic(features).squeeze(-1)
 
 
 class A2CAgent:
     def __init__(
         self,
         obs_dim: int,
-        n_actions: int,
+        action_dim: int,
+        continuous: bool = False,
         lr: float = 3e-4,
         gamma: float = 0.99,
         entropy_coef: float = 0.01,
@@ -39,9 +58,13 @@ class A2CAgent:
         self.gamma = gamma
         self.entropy_coef = entropy_coef
         self.value_loss_coef = value_loss_coef
+        self.continuous = continuous
         self.device = torch.device(device)
 
-        self.net = ActorCritic(obs_dim, n_actions, hidden_dim).to(self.device)
+        if continuous:
+            self.net = ContinuousActorCritic(obs_dim, action_dim, hidden_dim).to(self.device)
+        else:
+            self.net = DiscreteActorCritic(obs_dim, action_dim, hidden_dim).to(self.device)
         self.optimizer = optim.Adam(self.net.parameters(), lr=lr)
 
         self._log_probs: list[torch.Tensor] = []
@@ -49,11 +72,15 @@ class A2CAgent:
         self._rewards: list[float] = []
         self._entropies: list[torch.Tensor] = []
 
-    def select_action(self, obs: np.ndarray) -> int:
+    def select_action(self, obs: np.ndarray):
         obs_t = torch.FloatTensor(obs).unsqueeze(0).to(self.device)
-        logits, value = self.net(obs_t)
-        dist = Categorical(logits=logits)
+        dist, value = self.net(obs_t)
         action = dist.sample()
+        if self.continuous:
+            self._log_probs.append(dist.log_prob(action).sum(-1))
+            self._entropies.append(dist.entropy().sum(-1))
+            self._values.append(value)
+            return action.cpu().numpy().squeeze(0)
         self._log_probs.append(dist.log_prob(action))
         self._values.append(value)
         self._entropies.append(dist.entropy())
