@@ -31,6 +31,7 @@ def make_atari_env(env_id: str, render_mode=None):
     env = gym.wrappers.ResizeObservation(env, (84, 84))
     env = gym.wrappers.FrameStackObservation(env, 4)
     env = gym.wrappers.RecordEpisodeStatistics(env)
+    env.reset(seed=42)
     return env
 
 
