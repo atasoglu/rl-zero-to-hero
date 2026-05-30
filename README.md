@@ -112,19 +112,7 @@ Techniques for aligning language models with human preferences. The core pipelin
 | 037 | Constitutional AI | LLM | Self-critique and revision loops |
 | 038 | RLAIF | LLM | AI feedback as preference signal |
 
-### Tier 6: Multi-Agent RL
-
-Multiple agents learning simultaneously in cooperative, competitive, and mixed settings.
-
-| # | Method | Environment | Key Concepts |
-|---|--------|-------------|--------------|
-| 039 | IQL (Independent Q-Learning) | PettingZoo | MARL baseline, non-stationarity |
-| 040 | MAPPO | PettingZoo, SMAC | Multi-agent PPO, centralized value function |
-| 041 | MADDPG | Cooperative / competitive | Centralized training, decentralized execution |
-| 042 | QMIX | SMAC (StarCraft) | Cooperative MARL, monotonic mixing |
-| 043 | Self-Play | Connect4, Chess | Competitive self-improvement, ELO |
-
-### Tier 7: VLA and LLM + Robotics
+### Tier 6: VLA and LLM + Robotics
 
 Vision-Language-Action models and language-conditioned robot policies at the frontier where LLMs meet physical systems.
 
@@ -138,6 +126,18 @@ Vision-Language-Action models and language-conditioned robot policies at the fro
 | 049 | Diffusion Policy | Robot manipulation | Denoising diffusion for action generation, multimodal distributions |
 | 050 | OpenVLA | Open-source VLA | Vision-language-action fine-tuning |
 | 051 | π0 (Pi-Zero) | Dexterous manipulation | Flow matching + VLA architecture |
+
+### Bonus Tier-1: Multi-Agent RL
+
+Multiple agents learning simultaneously in cooperative, competitive, and mixed settings.
+
+| # | Method | Environment | Key Concepts |
+|---|--------|-------------|--------------|
+| 039 | IQL (Independent Q-Learning) | PettingZoo | MARL baseline, non-stationarity |
+| 040 | MAPPO | PettingZoo, SMAC | Multi-agent PPO, centralized value function |
+| 041 | MADDPG | Cooperative / competitive | Centralized training, decentralized execution |
+| 042 | QMIX | SMAC (StarCraft) | Cooperative MARL, monotonic mixing |
+| 043 | Self-Play | Connect4, Chess | Competitive self-improvement, ELO |
 
 ## Module Structure Reference
 
@@ -165,7 +165,7 @@ Every module follows this layout:
 | 3: Advanced | `gymnasium[mujoco]`, `torch`, `tensorboard` |
 | 4: Offline / Imitation | `gymnasium`, `torch`, `minari` |
 | 5: RLHF / LLM | `transformers`, `trl`, `datasets`, `torch` |
-| 6: MARL | `pettingzoo`, `gymnasium`, `torch` |
-| 7: VLA / Robotics | `gymnasium-robotics`, `transformers`, `torch` |
+| 6: VLA / Robotics | `gymnasium-robotics`, `transformers`, `torch` |
+| Bonus 1: MARL | `pettingzoo`, `gymnasium`, `torch` |
 
 All modules include `ipykernel` as a dev dependency for notebook exploration.
