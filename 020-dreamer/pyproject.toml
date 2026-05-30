@@ -1,0 +1,19 @@
+[project]
+name = "020-dreamer"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "DreamerV3 (simplified): RSSM world model with latent imagination for actor-critic training"
+dependencies = [
+    "rl-common",
+    "gymnasium[mujoco]==1.1.1",
+    "torch>=2.0",
+    "numpy>=2.0",
+    "matplotlib>=3.9",
+    "tqdm>=4.66",
+]
+
+[tool.uv.sources]
+rl-common = { path = "../common", editable = true }
+
+[dependency-groups]
+dev = ["ipykernel"]

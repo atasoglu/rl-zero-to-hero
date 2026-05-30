@@ -1,0 +1,21 @@
+[project]
+name = "022-icm"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "Intrinsic Curiosity Module (ICM): curiosity-driven exploration via forward and inverse dynamics models"
+dependencies = [
+    "rl-common",
+    "gymnasium[atari]==1.1.1",
+    "ale-py>=0.10",
+    "opencv-python-headless>=4.0",
+    "torch>=2.0",
+    "numpy>=2.0",
+    "matplotlib>=3.9",
+    "tqdm>=4.66",
+]
+
+[tool.uv.sources]
+rl-common = { path = "../common", editable = true }
+
+[dependency-groups]
+dev = ["ipykernel"]

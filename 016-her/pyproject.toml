@@ -1,0 +1,20 @@
+[project]
+name = "016-her"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "Hindsight Experience Replay (HER): relabel failed episodes with achieved goals to learn from sparse rewards"
+dependencies = [
+    "rl-common",
+    "gymnasium-robotics>=1.3",
+    "gymnasium==1.1.1",
+    "torch>=2.0",
+    "numpy>=2.0",
+    "matplotlib>=3.9",
+    "tqdm>=4.66",
+]
+
+[tool.uv.sources]
+rl-common = { path = "../common", editable = true }
+
+[dependency-groups]
+dev = ["ipykernel"]
