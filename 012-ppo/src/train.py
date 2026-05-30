@@ -4,6 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
+import gymnasium as gym
 import numpy as np
 import torch
 from tqdm import tqdm
@@ -122,11 +123,13 @@ if __name__ == "__main__":
 
     env = make_env(args.env)
     obs_dim = env.observation_space.shape[0]
-    n_actions = env.action_space.n
+    continuous = isinstance(env.action_space, gym.spaces.Box)
+    action_dim = env.action_space.shape[0] if continuous else env.action_space.n
 
     agent = PPOAgent(
         obs_dim=obs_dim,
-        n_actions=n_actions,
+        action_dim=action_dim,
+        continuous=continuous,
         lr=args.lr,
         gamma=args.gamma,
         gae_lambda=args.gae_lambda,
