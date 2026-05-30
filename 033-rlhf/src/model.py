@@ -26,9 +26,10 @@ class PolicyWithValueHead(nn.Module):
             attention_mask=attention_mask,
             output_hidden_states=True,
         )
-        logits = outputs.logits                          # (B, T, V)
-        last_hidden = outputs.hidden_states[-1]          # (B, T, H)
-        values = self.value_head(last_hidden).squeeze(-1)  # (B, T)
+        logits = outputs.logits                                          # (B, T, V)
+        last_hidden = outputs.hidden_states[-1]                         # (B, T, H)
+        last_hidden = last_hidden.to(self.value_head.weight.dtype)      # backbone may be bf16
+        values = self.value_head(last_hidden).squeeze(-1)               # (B, T)
         return logits, values
 
     def generate(self, input_ids: torch.Tensor, **kwargs) -> torch.Tensor:

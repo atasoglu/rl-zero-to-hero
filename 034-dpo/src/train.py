@@ -57,6 +57,13 @@ def resolve_device(arg: str) -> str:
     return "cpu"
 
 
+def _get_user_message(messages: list[dict]) -> str:
+    for msg in messages:
+        if msg["role"] == "user":
+            return msg["content"]
+    return messages[0]["content"]
+
+
 def _get_assistant_response(messages: list[dict]) -> str:
     for msg in reversed(messages):
         if msg["role"] == "assistant":
@@ -100,7 +107,7 @@ class DPODataset(Dataset):
 
     def __getitem__(self, idx: int) -> dict:
         ex = self.data[idx]
-        prompt = ex["prompt"]
+        prompt = _get_user_message(ex["chosen"])
         chosen_ids, chosen_labels = self._encode_pair(
             prompt, _get_assistant_response(ex["chosen"])
         )
@@ -156,7 +163,7 @@ def show_examples(
             enc["input_ids"], max_new_tokens, tokenizer.pad_token_id
         )
         response_text = tokenizer.decode(response_ids[0], skip_special_tokens=True)
-        print(f"\nPrompt  : {raw_data[i]['prompt'][:100]}...")
+        print(f"\nPrompt  : {_get_user_message(raw_data[i]['chosen'])[:100]}...")
         print(f"Response: {response_text[:200]}")
 
 

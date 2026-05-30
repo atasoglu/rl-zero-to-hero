@@ -22,5 +22,6 @@ class RewardModel(nn.Module):
     def forward(self, input_ids: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:
         outputs = self.backbone(input_ids=input_ids, attention_mask=attention_mask)
         # last non-padding token's hidden state
-        last_hidden = outputs.last_hidden_state[:, -1, :]  # (B, H)
-        return self.value_head(last_hidden).squeeze(-1)    # (B,)
+        last_hidden = outputs.last_hidden_state[:, -1, :]           # (B, H)
+        last_hidden = last_hidden.to(self.value_head.weight.dtype)  # backbone may be bf16
+        return self.value_head(last_hidden).squeeze(-1)             # (B,)

@@ -55,6 +55,13 @@ def resolve_device(arg: str) -> str:
     return "cpu"
 
 
+def _get_user_message(messages: list[dict]) -> str:
+    for msg in messages:
+        if msg["role"] == "user":
+            return msg["content"]
+    return messages[0]["content"]
+
+
 def _get_assistant_response(messages: list[dict]) -> str:
     for msg in reversed(messages):
         if msg["role"] == "assistant":
@@ -83,7 +90,7 @@ class PreferenceDataset(Dataset):
 
     def __getitem__(self, idx: int) -> dict:
         ex = self.data[idx]
-        prompt = ex["prompt"]
+        prompt = _get_user_message(ex["chosen"])
         enc_c = self._encode(prompt, _get_assistant_response(ex["chosen"]))
         enc_r = self._encode(prompt, _get_assistant_response(ex["rejected"]))
         return {
@@ -144,7 +151,7 @@ def show_examples(agent: RewardModelAgent, tokenizer, raw_data, n: int, max_leng
     agent.model.eval()
     for i in range(min(n, len(raw_data))):
         ex = raw_data[i]
-        prompt = ex["prompt"]
+        prompt = _get_user_message(ex["chosen"])
         chosen_resp = _get_assistant_response(ex["chosen"])
         rejected_resp = _get_assistant_response(ex["rejected"])
 

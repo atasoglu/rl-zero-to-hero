@@ -66,6 +66,13 @@ def resolve_device(arg: str) -> str:
     return "cpu"
 
 
+def _get_user_message(messages: list[dict]) -> str:
+    for msg in messages:
+        if msg["role"] == "user":
+            return msg["content"]
+    return messages[0]["content"]
+
+
 class PromptDataset(Dataset):
     def __init__(self, raw, tokenizer, max_prompt_len: int):
         self.data = raw
@@ -76,7 +83,7 @@ class PromptDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx: int) -> dict:
-        prompt = f"Human: {self.data[idx]['prompt']}\nAssistant:"
+        prompt = f"Human: {_get_user_message(self.data[idx]['chosen'])}\nAssistant:"
         enc = self.tokenizer(
             prompt,
             truncation=True,
@@ -183,7 +190,7 @@ def show_examples(agent: RLHFAgent, tokenizer, raw_data, n: int, max_prompt_len:
             pad_token_id=tokenizer.pad_token_id,
         )
         response_text = tokenizer.decode(response_ids[0], skip_special_tokens=True)
-        print(f"\nPrompt  : {raw_data[i]['prompt'][:100]}...")
+        print(f"\nPrompt  : {_get_user_message(raw_data[i]['chosen'])[:100]}...")
         print(f"Response: {response_text[:200]}")
 
 
