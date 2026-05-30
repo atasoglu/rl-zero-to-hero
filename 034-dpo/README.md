@@ -72,14 +72,6 @@ Response tokens are selected by masking prompt positions with -100.
 - **Reference model is frozen**: π_ref is computed once per batch and never updated. It acts as an anchor preventing catastrophic forgetting.
 - **DPO vs RLHF**: DPO is simpler and often more stable, but RLHF (033) allows online generation — the policy can explore beyond the preference dataset distribution.
 
-## Usage
-
-```bash
-uv sync
-uv run python src/train.py --help
-uv run python src/train.py --steps 500 --beta 0.1 --generate 3
-```
-
 ## References
 
 - [DPO (Rafailov et al., 2023)](https://arxiv.org/abs/2305.18290)

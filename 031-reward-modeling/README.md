@@ -57,16 +57,6 @@ flowchart TD
 - **Accuracy metric**: Fraction of pairs where `r_chosen > r_rejected`. A random model starts at ~50%; a well-trained RM should exceed 70%.
 - **This RM is used by module 033**: The saved checkpoint is loaded by the RLHF pipeline as the reward signal for PPO.
 
-## Usage
-
-```bash
-uv sync
-uv run python src/train.py --help
-uv run python src/train.py --steps 500 --generate 3
-```
-
-The trained reward model is saved to `checkpoints/rm.pt`.
-
 ## References
 
 - [InstructGPT (Ouyang et al., 2022)](https://arxiv.org/abs/2203.02155)

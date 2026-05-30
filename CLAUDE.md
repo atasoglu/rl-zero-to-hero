@@ -71,6 +71,10 @@ Every module follows the same pattern:
 
 Add new utilities to `common/rl_common/`, export them from `common/rl_common/__init__.py`. Because all modules use an editable install, changes are picked up immediately without re-syncing.
 
+## Module READMEs
+
+Do **not** add a `## Usage` section to individual module READMEs. The root `README.md` already documents how to run any module (`uv sync` + `uv run python src/train.py`). Repeating it per-module is redundant.
+
 ## Code Style
 
 ### argparse

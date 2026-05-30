@@ -68,18 +68,6 @@ R_t  = A_t + V(t)         (return for value loss)
 - **Sparse reward + dense KL**: The RM gives a single scalar per response (sparse). KL is a dense per-token signal. Together they shape every gradient step.
 - **Prerequisite**: Run module 031 first to get a meaningful reward model checkpoint (`031-reward-modeling/checkpoints/rm.pt`). Without it, a random-init RM is used and scores will be noise.
 
-## Usage
-
-```bash
-uv sync
-
-# With trained reward model from 031:
-uv run python src/train.py --steps 200 --reward-model-path ../031-reward-modeling/checkpoints/rm.pt --generate 3
-
-# Standalone (random-init reward model):
-uv run python src/train.py --steps 200 --generate 3
-```
-
 ## References
 
 - [InstructGPT (Ouyang et al., 2022)](https://arxiv.org/abs/2203.02155)
