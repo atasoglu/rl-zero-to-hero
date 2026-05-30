@@ -1,0 +1,17 @@
+[project]
+name = "003-monte-carlo"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "Monte Carlo control on Blackjack"
+dependencies = [
+    "rl-common",
+    "gymnasium[toy-text]==1.1.1",
+    "numpy>=2.0",
+    "matplotlib>=3.9",
+]
+
+[tool.uv.sources]
+rl-common = { path = "../common", editable = true }
+
+[dependency-groups]
+dev = ["ipykernel"]
