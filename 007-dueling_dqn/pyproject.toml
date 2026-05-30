@@ -7,6 +7,7 @@ dependencies = [
     "rl-common",
     "gymnasium[classic-control,box2d,atari]==1.1.1",
     "ale-py>=0.10",
+    "opencv-python-headless>=4.0",
     "numpy>=2.0",
     "torch>=2.0",
     "matplotlib>=3.9",

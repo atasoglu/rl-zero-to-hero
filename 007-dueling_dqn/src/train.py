@@ -18,7 +18,9 @@ ATARI_ENVS = [
 
 
 def make_atari_env(env_id: str, render_mode=None):
+    import ale_py
     import gymnasium as gym
+    gym.register_envs(ale_py)
     env = gym.make(
         env_id,
         render_mode=render_mode,
@@ -118,18 +120,12 @@ if __name__ == "__main__":
         device = args.device
 
     is_atari = args.env.startswith("ALE/")
-    if is_atari:
-        env = make_atari_env(args.env)
-        import numpy as np
-        obs_dim = int(np.prod(env.observation_space.shape))
-    else:
-        env = make_env(args.env)
-        obs_dim = env.observation_space.shape[0]
-
+    env = make_atari_env(args.env) if is_atari else make_env(args.env)
+    obs_shape = env.observation_space.shape
     n_actions = env.action_space.n
 
     agent = DuelingDQNAgent(
-        obs_dim=obs_dim,
+        obs_shape=obs_shape,
         n_actions=n_actions,
         lr=args.lr,
         gamma=args.gamma,

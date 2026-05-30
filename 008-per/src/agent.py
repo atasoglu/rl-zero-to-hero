@@ -3,14 +3,14 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 
-from model import QNetwork
+from model import AtariQNetwork, QNetwork
 from per_buffer import PrioritizedReplayBuffer
 
 
 class PERAgent:
     def __init__(
         self,
-        obs_dim: int,
+        obs_shape: tuple,
         n_actions: int,
         lr: float = 1e-3,
         gamma: float = 0.99,
@@ -38,13 +38,17 @@ class PERAgent:
         self.per_beta = per_beta_start
         self.per_beta_end = per_beta_end
 
-        self.q_net = QNetwork(obs_dim, n_actions, hidden_dim).to(self.device)
-        self.target_net = QNetwork(obs_dim, n_actions, hidden_dim).to(self.device)
+        if len(obs_shape) == 3:
+            self.q_net = AtariQNetwork(n_actions).to(self.device)
+            self.target_net = AtariQNetwork(n_actions).to(self.device)
+        else:
+            self.q_net = QNetwork(obs_shape[0], n_actions, hidden_dim).to(self.device)
+            self.target_net = QNetwork(obs_shape[0], n_actions, hidden_dim).to(self.device)
         self.target_net.load_state_dict(self.q_net.state_dict())
         self.target_net.eval()
 
         self.optimizer = optim.Adam(self.q_net.parameters(), lr=lr)
-        self.buffer = PrioritizedReplayBuffer(buffer_size, obs_dim, alpha=per_alpha)
+        self.buffer = PrioritizedReplayBuffer(buffer_size, obs_shape, alpha=per_alpha)
 
     def select_action(self, obs: np.ndarray) -> int:
         if np.random.random() < self.epsilon:

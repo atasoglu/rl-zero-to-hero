@@ -51,15 +51,16 @@ class SumTree:
 class PrioritizedReplayBuffer:
     """Proportional PER with importance sampling weights."""
 
-    def __init__(self, capacity: int, obs_dim: int, alpha: float = 0.6):
+    def __init__(self, capacity: int, obs_dim: int | tuple, alpha: float = 0.6):
         self.capacity = capacity
         self.alpha = alpha
         self.tree = SumTree(capacity)
 
-        self.obs = np.zeros((capacity, obs_dim), dtype=np.float32)
+        obs_shape = (obs_dim,) if isinstance(obs_dim, int) else obs_dim
+        self.obs = np.zeros((capacity, *obs_shape), dtype=np.float32)
         self.actions = np.zeros((capacity, 1), dtype=np.float32)
         self.rewards = np.zeros(capacity, dtype=np.float32)
-        self.next_obs = np.zeros((capacity, obs_dim), dtype=np.float32)
+        self.next_obs = np.zeros((capacity, *obs_shape), dtype=np.float32)
         self.dones = np.zeros(capacity, dtype=np.float32)
 
         self._max_priority = 1.0

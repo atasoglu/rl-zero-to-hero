@@ -3,14 +3,14 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 
-from model import DuelingQNetwork
+from model import AtariQNetwork, DuelingQNetwork
 from rl_common import ReplayBuffer
 
 
 class DuelingDQNAgent:
     def __init__(
         self,
-        obs_dim: int,
+        obs_shape: tuple,
         n_actions: int,
         lr: float = 1e-3,
         gamma: float = 0.99,
@@ -33,13 +33,17 @@ class DuelingDQNAgent:
         self.device = torch.device(device)
         self._update_count = 0
 
-        self.q_net = DuelingQNetwork(obs_dim, n_actions, hidden_dim).to(self.device)
-        self.target_net = DuelingQNetwork(obs_dim, n_actions, hidden_dim).to(self.device)
+        if len(obs_shape) == 3:
+            self.q_net = AtariQNetwork(n_actions).to(self.device)
+            self.target_net = AtariQNetwork(n_actions).to(self.device)
+        else:
+            self.q_net = DuelingQNetwork(obs_shape[0], n_actions, hidden_dim).to(self.device)
+            self.target_net = DuelingQNetwork(obs_shape[0], n_actions, hidden_dim).to(self.device)
         self.target_net.load_state_dict(self.q_net.state_dict())
         self.target_net.eval()
 
         self.optimizer = optim.Adam(self.q_net.parameters(), lr=lr)
-        self.buffer = ReplayBuffer(buffer_size, obs_dim)
+        self.buffer = ReplayBuffer(buffer_size, obs_shape)
 
     def select_action(self, obs: np.ndarray) -> int:
         if np.random.random() < self.epsilon:

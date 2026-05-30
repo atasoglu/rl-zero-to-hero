@@ -17,6 +17,22 @@ ATARI_ENVS = [
 ]
 
 
+def make_atari_env(env_id: str, render_mode=None):
+    import ale_py
+    import gymnasium as gym
+    gym.register_envs(ale_py)
+    env = gym.make(
+        env_id,
+        render_mode=render_mode,
+        obs_type="grayscale",
+        frameskip=4,
+        repeat_action_probability=0.0,
+    )
+    env = gym.wrappers.ResizeObservation(env, (84, 84))
+    env = gym.wrappers.FrameStackObservation(env, 4)
+    return env
+
+
 def run_episode(agent: PERAgent, env, train: bool = True) -> float:
     obs, _ = env.reset()
     total_reward = 0.0
@@ -111,12 +127,13 @@ if __name__ == "__main__":
     else:
         device = args.device
 
-    env = make_env(args.env)
-    obs_dim = env.observation_space.shape[0]
+    is_atari = args.env.startswith("ALE/")
+    env = make_atari_env(args.env) if is_atari else make_env(args.env)
+    obs_shape = env.observation_space.shape
     n_actions = env.action_space.n
 
     agent = PERAgent(
-        obs_dim=obs_dim,
+        obs_shape=obs_shape,
         n_actions=n_actions,
         lr=args.lr,
         gamma=args.gamma,
@@ -132,12 +149,13 @@ if __name__ == "__main__":
         device=device,
     )
 
-    render_env = make_env(args.env, render_mode="human") if args.render_interval else None
+    render_env = (make_atari_env(args.env, render_mode="human") if is_atari
+                  else make_env(args.env, render_mode="human")) if args.render_interval else None
     rewards = train(agent, env, args.episodes, render_env=render_env, render_interval=args.render_interval)
     if render_env:
         render_env.close()
 
-    eval_env = make_env(args.env)
+    eval_env = make_atari_env(args.env) if is_atari else make_env(args.env)
     mean_reward = evaluate(agent, eval_env, n_episodes=10)
     print(f"{args.env} | device: {device} | episodes: {args.episodes} | eval mean reward: {mean_reward:.1f}")
 
@@ -147,5 +165,5 @@ if __name__ == "__main__":
     eval_env.close()
 
     if args.watch > 0:
-        render_env = make_env(args.env, render_mode="human")
+        render_env = make_atari_env(args.env, render_mode="human") if is_atari else make_env(args.env, render_mode="human")
         watch(lambda env: run_episode(agent, env, train=False), render_env, n_episodes=args.watch)
