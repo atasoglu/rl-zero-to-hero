@@ -92,11 +92,13 @@ class RLHFAgent:
         lr: float,
         ppo_epochs: int,
         device: str,
+        pad_token_id: int = 0,
     ):
         self.device = torch.device(device)
         self.kl_coef = kl_coef
         self.clip_eps = clip_eps
         self.ppo_epochs = ppo_epochs
+        self.pad_token_id = pad_token_id
 
         self.policy = PolicyWithValueHead(model_name).to(self.device)
         self.optimizer = torch.optim.AdamW(self.policy.parameters(), lr=lr)
@@ -115,10 +117,12 @@ class RLHFAgent:
         prompt_ids: torch.Tensor,
         max_new_tokens: int,
         pad_token_id: int,
+        attention_mask: torch.Tensor | None = None,
     ) -> torch.Tensor:
         """Generate response tokens for a batch of prompts."""
         output = self.policy.generate(
             prompt_ids.to(self.device),
+            attention_mask=attention_mask.to(self.device) if attention_mask is not None else None,
             max_new_tokens=max_new_tokens,
             do_sample=True,
             temperature=0.9,
@@ -136,7 +140,7 @@ class RLHFAgent:
         full_ids = torch.cat([prompt_ids, response_ids], dim=1)  # (B, P+R)
         prompt_len = prompt_ids.shape[1]
         B, R = response_ids.shape
-        attn_mask = (full_ids != 0).long()
+        attn_mask = (full_ids != self.pad_token_id).long()
 
         # ── reward model score (scalar per response) ──────────────────────
         with torch.no_grad():

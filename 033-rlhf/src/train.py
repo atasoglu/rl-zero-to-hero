@@ -156,9 +156,13 @@ def _train_with_max_tokens(
             batch = next(it)
 
         prompt_ids = batch["input_ids"].to(agent.device)
+        attention_mask = batch["attention_mask"]
 
         response_ids = agent.generate(
-            prompt_ids, max_new_tokens=max_new_tokens, pad_token_id=tokenizer.pad_token_id
+            prompt_ids,
+            max_new_tokens=max_new_tokens,
+            pad_token_id=tokenizer.pad_token_id,
+            attention_mask=attention_mask,
         )
 
         stats = agent.ppo_step(prompt_ids, response_ids)
@@ -203,6 +207,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "left"
 
     print("Loading dataset...")
     raw = load_dataset(args.dataset, split="train")
@@ -219,6 +224,7 @@ def main():
         lr=args.lr,
         ppo_epochs=args.ppo_epochs,
         device=device,
+        pad_token_id=tokenizer.pad_token_id,
     )
 
     rm_scores = _train_with_max_tokens(agent, loader, args.steps, tokenizer, args.max_new_tokens)
