@@ -48,12 +48,12 @@ pip install gymnasium[mujoco]
 
 ## Key Takeaways
 
-- [ ] The clipped objective is a first-order proxy for TRPO's KL constraint — simpler but nearly as stable
-- [ ] `clip_eps=0.2` means the ratio r is clamped to [0.8, 1.2]; updates that would push r outside this range are suppressed
-- [ ] Reusing data for multiple epochs (`n_epochs`) increases sample efficiency — the clipping prevents exploitation of stale data
-- [ ] GAE advantage estimates reduce variance; `gae_lambda=0.95` is a strong default
-- [ ] PPO is on-policy but can reuse recent data for a few epochs with the clip protecting against too-large updates
-- [ ] PPO is the policy optimizer used in RLHF pipelines (InstructGPT, ChatGPT); understanding it is essential for Tier 5
+- The clipped objective is a first-order proxy for TRPO's KL constraint — simpler but nearly as stable
+- `clip_eps=0.2` means the ratio r is clamped to [0.8, 1.2]; updates that would push r outside this range are suppressed
+- Reusing data for multiple epochs (`n_epochs`) increases sample efficiency — the clipping prevents exploitation of stale data
+- GAE advantage estimates reduce variance; `gae_lambda=0.95` is a strong default
+- PPO is on-policy but can reuse recent data for a few epochs with the clip protecting against too-large updates
+- PPO is the policy optimizer used in RLHF pipelines (InstructGPT, ChatGPT); understanding it is essential for Tier 5
 
 ## References
 

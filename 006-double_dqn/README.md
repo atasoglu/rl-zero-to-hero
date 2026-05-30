@@ -31,11 +31,11 @@ Everything else — experience replay, target network sync, ε-greedy — stays 
 
 ## Key Takeaways
 
-- [ ] Taking the max over noisy Q-estimates causes a systematic upward bias — DQN overestimates values
-- [ ] Double DQN's fix is a one-line change in the target: select the action with the online net, evaluate with the target net
-- [ ] The bias reduction leads to less overconfident policies, which is especially visible in shaped-reward environments like LunarLander
-- [ ] Double DQN tends to outperform DQN on harder benchmarks while adding zero computational cost
-- [ ] Overestimation bias is not unique to DQN — it resurfaces in actor-critic methods and is addressed again in TD3 (module 014)
+- Taking the max over noisy Q-estimates causes a systematic upward bias — DQN overestimates values
+- Double DQN's fix is a one-line change in the target: select the action with the online net, evaluate with the target net
+- The bias reduction leads to less overconfident policies, which is especially visible in shaped-reward environments like LunarLander
+- Double DQN tends to outperform DQN on harder benchmarks while adding zero computational cost
+- Overestimation bias is not unique to DQN — it resurfaces in actor-critic methods and is addressed again in TD3 (module 014)
 
 ## References
 

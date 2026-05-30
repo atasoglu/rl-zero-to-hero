@@ -51,12 +51,12 @@ pip install gymnasium[mujoco]
 
 ## Key Takeaways
 
-- [ ] The deterministic policy gradient theorem allows gradient-based actor optimization in continuous spaces
-- [ ] Soft target updates (`τ=0.005`) are smoother than periodic hard copies — the target changes slowly every step
-- [ ] OU noise produces correlated exploration; for many tasks, simple Gaussian noise works just as well
-- [ ] The critic gradient flowing through Q(s, μ(s)) trains the actor — the actor never sees a reward directly
-- [ ] DDPG is sensitive to hyperparameters and can suffer from Q-value overestimation — see TD3 (014) for the fix
-- [ ] DDPG is off-policy, making experience replay efficient
+- The deterministic policy gradient theorem allows gradient-based actor optimization in continuous spaces
+- Soft target updates (`τ=0.005`) are smoother than periodic hard copies — the target changes slowly every step
+- OU noise produces correlated exploration; for many tasks, simple Gaussian noise works just as well
+- The critic gradient flowing through Q(s, μ(s)) trains the actor — the actor never sees a reward directly
+- DDPG is sensitive to hyperparameters and can suffer from Q-value overestimation — see TD3 (014) for the fix
+- DDPG is off-policy, making experience replay efficient
 
 ## References
 

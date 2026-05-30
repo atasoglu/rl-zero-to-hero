@@ -37,10 +37,10 @@ Also supports: **HalfCheetah-v4**, **Walker2d-v4**.
 
 ## Key Takeaways
 
-- [ ] Short rollouts (H≈1) prevent model error from compounding while still providing useful synthetic data
-- [ ] Ensemble disagreement provides implicit uncertainty — high-variance predictions = unreliable regions
-- [ ] Mixing real (20%) + model (80%) data keeps the policy anchored to real transitions
-- [ ] MBPO is the canonical "model-based achieves model-free performance" result on MuJoCo benchmarks
+- Short rollouts (H≈1) prevent model error from compounding while still providing useful synthetic data
+- Ensemble disagreement provides implicit uncertainty — high-variance predictions = unreliable regions
+- Mixing real (20%) + model (80%) data keeps the policy anchored to real transitions
+- MBPO is the canonical "model-based achieves model-free performance" result on MuJoCo benchmarks
 
 ## References
 

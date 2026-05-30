@@ -41,10 +41,10 @@ Also supports: **LunarLander-v3**, **Acrobot-v1**.
 
 ## Key Takeaways
 
-- [ ] MCTS converts a learned model into a strong planning algorithm; the model doesn't need to be perfect — just locally accurate
-- [ ] Temperature annealing (τ: 1.0 → 0.1) makes early exploration stochastic and late training deterministic
-- [ ] N-step returns (td_steps=5) give more informative value targets than 1-step TD
-- [ ] UCB balances exploitation (high value) and exploration (high prior × low visit count)
+- MCTS converts a learned model into a strong planning algorithm; the model doesn't need to be perfect — just locally accurate
+- Temperature annealing (τ: 1.0 → 0.1) makes early exploration stochastic and late training deterministic
+- N-step returns (td_steps=5) give more informative value targets than 1-step TD
+- UCB balances exploitation (high value) and exploration (high prior × low visit count)
 
 ## References
 

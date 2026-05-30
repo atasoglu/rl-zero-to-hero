@@ -54,12 +54,12 @@ pip install gymnasium[mujoco]
 
 ## Key Takeaways
 
-- [ ] TRPO guarantees monotonic improvement: each update cannot make the policy worse (in expectation under the constraint)
-- [ ] The KL constraint replaces the learning rate — `max_kl` is the key hyperparameter
-- [ ] Conjugate gradient solves the trust-region subproblem without forming the full Fisher matrix (O(n) Hessian-vector products vs O(n²) storage)
-- [ ] The Fisher information matrix defines the geometry of policy space; natural gradient steps are invariant to parameterization
-- [ ] TRPO is complex to implement correctly; PPO (module 012) achieves similar stability with a much simpler first-order method
-- [ ] GAE (Generalized Advantage Estimation) reduces variance of the advantage estimate by trading in some bias
+- TRPO guarantees monotonic improvement: each update cannot make the policy worse (in expectation under the constraint)
+- The KL constraint replaces the learning rate — `max_kl` is the key hyperparameter
+- Conjugate gradient solves the trust-region subproblem without forming the full Fisher matrix (O(n) Hessian-vector products vs O(n²) storage)
+- The Fisher information matrix defines the geometry of policy space; natural gradient steps are invariant to parameterization
+- TRPO is complex to implement correctly; PPO (module 012) achieves similar stability with a much simpler first-order method
+- GAE (Generalized Advantage Estimation) reduces variance of the advantage estimate by trading in some bias
 
 ## References
 

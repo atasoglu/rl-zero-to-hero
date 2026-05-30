@@ -33,11 +33,11 @@ The tuple (s, a, r, s', a') gives the algorithm its name.
 
 ## Key Takeaways
 
-- [ ] SARSA is on-policy: the policy being evaluated and the policy generating experience are the same
-- [ ] The update uses Q(s', a') where a' comes from the current ε-greedy policy, not from argmax
-- [ ] On-policy methods are safer in environments with catastrophic states because they account for exploration risk
-- [ ] Q-Learning converges to the optimal policy; SARSA converges to the best policy given the exploration strategy
-- [ ] Both converge to the same policy as ε → 0, but during training they behave differently
+- SARSA is on-policy: the policy being evaluated and the policy generating experience are the same
+- The update uses Q(s', a') where a' comes from the current ε-greedy policy, not from argmax
+- On-policy methods are safer in environments with catastrophic states because they account for exploration risk
+- Q-Learning converges to the optimal policy; SARSA converges to the best policy given the exploration strategy
+- Both converge to the same policy as ε → 0, but during training they behave differently
 
 ## References
 

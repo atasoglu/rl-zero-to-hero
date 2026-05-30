@@ -45,10 +45,10 @@ Also supports: **ALE/Pitfall-v5**, **ALE/PrivateEye-v5**.
 
 ## Key Takeaways
 
-- [ ] The inverse model filters out environment noise (e.g. TV static) that the agent can't control — only action-relevant features survive in φ
-- [ ] Intrinsic reward is the model's prediction error, not hand-crafted — it's zero once the agent has seen a transition enough times
-- [ ] β controls forward vs inverse loss balance; λ controls ICM vs PPO loss balance
-- [ ] ICM is compatible with any on-policy algorithm (PPO is used here)
+- The inverse model filters out environment noise (e.g. TV static) that the agent can't control — only action-relevant features survive in φ
+- Intrinsic reward is the model's prediction error, not hand-crafted — it's zero once the agent has seen a transition enough times
+- β controls forward vs inverse loss balance; λ controls ICM vs PPO loss balance
+- ICM is compatible with any on-policy algorithm (PPO is used here)
 
 ## References
 

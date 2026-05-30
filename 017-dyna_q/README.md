@@ -36,10 +36,10 @@ Compare with `--n-planning 0` (pure Q-learning) to see how faster Dyna-Q converg
 
 ## Key Takeaways
 
-- [ ] Planning from a learned model replaces real environment interactions — cheaper than collecting more data
-- [ ] With a perfect model, `n_planning` steps of planning ≈ `n_planning` additional real steps
-- [ ] Model errors accumulate over long rollouts; Dyna-Q uses 1-step simulated transitions, keeping compounding error minimal
-- [ ] The model is only ever sampled at previously observed `(s, a)` pairs — it never extrapolates
+- Planning from a learned model replaces real environment interactions — cheaper than collecting more data
+- With a perfect model, `n_planning` steps of planning ≈ `n_planning` additional real steps
+- Model errors accumulate over long rollouts; Dyna-Q uses 1-step simulated transitions, keeping compounding error minimal
+- The model is only ever sampled at previously observed `(s, a)` pairs — it never extrapolates
 
 ## References
 

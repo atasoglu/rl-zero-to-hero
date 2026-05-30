@@ -38,10 +38,10 @@ Also supports: **FetchPush-v3**, **FetchSlide-v3**.
 
 ## Key Takeaways
 
-- [ ] HER converts any goal-conditioned environment into a dense learning problem without modifying the reward function
-- [ ] The "future" strategy (goal = achieved_goal at a random future step) works best in practice
-- [ ] Success rate is a better metric than mean reward for sparse-reward tasks
-- [ ] HER is compatible with any off-policy algorithm (SAC, DDPG, TD3); SAC is used here for its stability
+- HER converts any goal-conditioned environment into a dense learning problem without modifying the reward function
+- The "future" strategy (goal = achieved_goal at a random future step) works best in practice
+- Success rate is a better metric than mean reward for sparse-reward tasks
+- HER is compatible with any off-policy algorithm (SAC, DDPG, TD3); SAC is used here for its stability
 
 ## References
 

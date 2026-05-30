@@ -49,10 +49,10 @@ Also supports: **Hopper-v4**, **Walker2d-v4**.
 
 ## Key Takeaways
 
-- [ ] RSSM combines deterministic (GRU) and stochastic (Gaussian) components: the GRU provides stable temporal context; the Gaussian captures multi-step uncertainty
-- [ ] KL divergence between posterior and prior is the world model's "surprise" signal
-- [ ] λ-returns blend Monte Carlo (λ=1) and TD (λ=0) in imagination — λ=0.95 balances bias and variance
-- [ ] Policy gradients never touch the real env: actor improvement is purely through model backpropagation
+- RSSM combines deterministic (GRU) and stochastic (Gaussian) components: the GRU provides stable temporal context; the Gaussian captures multi-step uncertainty
+- KL divergence between posterior and prior is the world model's "surprise" signal
+- λ-returns blend Monte Carlo (λ=1) and TD (λ=0) in imagination — λ=0.95 balances bias and variance
+- Policy gradients never touch the real env: actor improvement is purely through model backpropagation
 
 ## References
 

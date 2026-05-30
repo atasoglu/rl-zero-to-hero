@@ -38,11 +38,11 @@ The continuous observations are discretized into 10 bins per dimension using fix
 
 ## Key Takeaways
 
-- [ ] λ interpolates between TD(0) (one-step bootstrap) and MC (full return): λ=0 is SARSA, λ=1 ≈ MC
-- [ ] Eligibility traces solve credit assignment by propagating the TD error backward in time
-- [ ] Accumulating traces: e(s, a) += 1 each visit; replacing traces: e(s, a) = 1 (avoids boosting frequently visited states)
-- [ ] Traces decay by γλ each step; pairs not recently visited receive small updates
-- [ ] Discretization is a simple way to apply tabular methods to continuous spaces, but does not scale
+- λ interpolates between TD(0) (one-step bootstrap) and MC (full return): λ=0 is SARSA, λ=1 ≈ MC
+- Eligibility traces solve credit assignment by propagating the TD error backward in time
+- Accumulating traces: e(s, a) += 1 each visit; replacing traces: e(s, a) = 1 (avoids boosting frequently visited states)
+- Traces decay by γλ each step; pairs not recently visited receive small updates
+- Discretization is a simple way to apply tabular methods to continuous spaces, but does not scale
 
 ## References
 

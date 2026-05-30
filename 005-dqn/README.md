@@ -37,12 +37,12 @@ for each episode:
 
 ## Key Takeaways
 
-- [ ] A Q-table cannot scale to continuous observations; a neural network approximates Q(s, a) across the whole state space
-- [ ] Experience replay breaks temporal correlations and allows reuse of past transitions
-- [ ] The target network stabilizes training by decoupling the regression target from the online weights
-- [ ] `target_update_freq` controls how often the target syncs; too low causes instability, too high slows learning
-- [ ] DQN is still off-policy: the ε-greedy behavior policy and the greedy target policy are different
-- [ ] Huber loss (or gradient clipping) can improve stability when TD errors are large; MSE works for these small envs
+- A Q-table cannot scale to continuous observations; a neural network approximates Q(s, a) across the whole state space
+- Experience replay breaks temporal correlations and allows reuse of past transitions
+- The target network stabilizes training by decoupling the regression target from the online weights
+- `target_update_freq` controls how often the target syncs; too low causes instability, too high slows learning
+- DQN is still off-policy: the ε-greedy behavior policy and the greedy target policy are different
+- Huber loss (or gradient clipping) can improve stability when TD errors are large; MSE works for these small envs
 
 ## References
 

@@ -41,12 +41,12 @@ pip install gymnasium[mujoco]
 
 ## Key Takeaways
 
-- [ ] Twin critics (`min(Q1, Q2)`) address overestimation bias — the same motivation as Double DQN but in continuous action space
-- [ ] Delayed actor updates decouple policy learning from noisy early critic estimates
-- [ ] Target policy smoothing regularizes the value function: adding noise to target actions prevents sharp Q-value peaks
-- [ ] The three tricks in TD3 each address a distinct failure mode; removing any one of them degrades performance
-- [ ] TD3's exploration noise is simple Gaussian (not OU) — this is simpler and works equally well in practice
-- [ ] SAC (module 015) provides a principled alternative: entropy maximization rather than heuristic noise
+- Twin critics (`min(Q1, Q2)`) address overestimation bias — the same motivation as Double DQN but in continuous action space
+- Delayed actor updates decouple policy learning from noisy early critic estimates
+- Target policy smoothing regularizes the value function: adding noise to target actions prevents sharp Q-value peaks
+- The three tricks in TD3 each address a distinct failure mode; removing any one of them degrades performance
+- TD3's exploration noise is simple Gaussian (not OU) — this is simpler and works equally well in practice
+- SAC (module 015) provides a principled alternative: entropy maximization rather than heuristic noise
 
 ## References
 

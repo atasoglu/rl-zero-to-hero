@@ -38,12 +38,12 @@ No replay buffer, no target network. One gradient update per episode.
 
 ## Key Takeaways
 
-- [ ] Policy gradient directly optimizes πθ — no need to learn a Q-function first
-- [ ] `∇θ log π(a|s) * G` is the policy gradient: actions that led to high return are made more probable
-- [ ] REINFORCE is high variance because G_t is estimated from a single trajectory; this is why it needs many episodes
-- [ ] Return normalization (standardize per episode) reduces variance and stabilizes training
-- [ ] REINFORCE is on-policy: the policy that collected the episode must be the same policy being updated
-- [ ] The baseline trick (subtracting a state-dependent baseline from G_t) reduces variance without bias — A2C (module 010) formalizes this
+- Policy gradient directly optimizes πθ — no need to learn a Q-function first
+- `∇θ log π(a|s) * G` is the policy gradient: actions that led to high return are made more probable
+- REINFORCE is high variance because G_t is estimated from a single trajectory; this is why it needs many episodes
+- Return normalization (standardize per episode) reduces variance and stabilizes training
+- REINFORCE is on-policy: the policy that collected the episode must be the same policy being updated
+- The baseline trick (subtracting a state-dependent baseline from G_t) reduces variance without bias — A2C (module 010) formalizes this
 
 ## References
 

@@ -46,11 +46,11 @@ AutoROM --accept-license
 
 ## Key Takeaways
 
-- [ ] V(s) and A(s, a) decompose Q(s, a): V captures state quality, A captures action preference
-- [ ] The mean-subtraction trick (`A - mean(A)`) ensures the decomposition is unique
-- [ ] V(s) receives gradient from every transition, improving sample efficiency in states where action choice is irrelevant
-- [ ] Dueling architecture is orthogonal to the training algorithm — it stacks with Double DQN, PER, and others
-- [ ] For Atari, the shared CNN encoder with two small heads is the standard architecture
+- V(s) and A(s, a) decompose Q(s, a): V captures state quality, A captures action preference
+- The mean-subtraction trick (`A - mean(A)`) ensures the decomposition is unique
+- V(s) receives gradient from every transition, improving sample efficiency in states where action choice is irrelevant
+- Dueling architecture is orthogonal to the training algorithm — it stacks with Double DQN, PER, and others
+- For Atari, the shared CNN encoder with two small heads is the standard architecture
 
 ## References
 

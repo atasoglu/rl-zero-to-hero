@@ -30,11 +30,11 @@ The update target `r + γ * max_a' Q(s', a')` is called the TD target. The diffe
 
 ## Key Takeaways
 
-- [ ] The Bellman optimality equation is the fixed point Q-Learning converges to
-- [ ] Off-policy means the behavior policy (ε-greedy) and target policy (greedy) are different
-- [ ] The TD error δ = r + γ max Q(s', a') - Q(s, a) is the learning signal
-- [ ] ε-greedy balances exploration and exploitation; decaying ε shifts from explore to exploit
-- [ ] Q-Learning converges to Q* given sufficient exploration and a decaying learning rate
+- The Bellman optimality equation is the fixed point Q-Learning converges to
+- Off-policy means the behavior policy (ε-greedy) and target policy (greedy) are different
+- The TD error δ = r + γ max Q(s', a') - Q(s, a) is the learning signal
+- ε-greedy balances exploration and exploitation; decaying ε shifts from explore to exploit
+- Q-Learning converges to Q* given sufficient exploration and a decaying learning rate
 
 ## References
 

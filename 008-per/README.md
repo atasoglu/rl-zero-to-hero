@@ -42,11 +42,11 @@ AutoROM --accept-license
 
 ## Key Takeaways
 
-- [ ] Uniform replay wastes updates on transitions with near-zero TD error; PER focuses capacity on surprising transitions
-- [ ] The sum tree enables O(log n) priority updates and O(log n) stratified sampling — crucial for large buffers
-- [ ] IS weights correct the sampling bias; β=1 gives unbiased gradients, β<1 trades some bias for variance reduction
-- [ ] Alpha controls how aggressively to prioritize (0=uniform, 1=fully greedy); 0.6 is a common default
-- [ ] PER combines with any value-based algorithm (DQN, Double DQN, Dueling DQN)
+- Uniform replay wastes updates on transitions with near-zero TD error; PER focuses capacity on surprising transitions
+- The sum tree enables O(log n) priority updates and O(log n) stratified sampling — crucial for large buffers
+- IS weights correct the sampling bias; β=1 gives unbiased gradients, β<1 trades some bias for variance reduction
+- Alpha controls how aggressively to prioritize (0=uniform, 1=fully greedy); 0.6 is a common default
+- PER combines with any value-based algorithm (DQN, Double DQN, Dueling DQN)
 
 ## References
 

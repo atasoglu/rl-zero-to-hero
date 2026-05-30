@@ -55,12 +55,12 @@ pip install gymnasium[mujoco]
 
 ## Key Takeaways
 
-- [ ] Maximum-entropy RL adds entropy H(π) to the reward: the agent is incentivized to be uncertain between equally good actions
-- [ ] Entropy regularization provides implicit exploration without needing a separate noise process
-- [ ] The reparameterization trick (`a = tanh(μ + σ * ε), ε ~ N(0,1)`) allows gradients to flow through the stochastic action
-- [ ] Auto alpha tuning adjusts temperature to maintain `target_entropy = -action_dim` — one fewer hyperparameter
-- [ ] SAC with twin critics removes overestimation bias; the entropy term prevents Q-value underestimation too
-- [ ] SAC is currently the state-of-the-art off-policy algorithm for continuous control and a strong baseline for robot learning research
+- Maximum-entropy RL adds entropy H(π) to the reward: the agent is incentivized to be uncertain between equally good actions
+- Entropy regularization provides implicit exploration without needing a separate noise process
+- The reparameterization trick (`a = tanh(μ + σ * ε), ε ~ N(0,1)`) allows gradients to flow through the stochastic action
+- Auto alpha tuning adjusts temperature to maintain `target_entropy = -action_dim` — one fewer hyperparameter
+- SAC with twin critics removes overestimation bias; the entropy term prevents Q-value underestimation too
+- SAC is currently the state-of-the-art off-policy algorithm for continuous control and a strong baseline for robot learning research
 
 ## References
 

@@ -36,11 +36,11 @@ for each rollout:
 
 ## Key Takeaways
 
-- [ ] No dynamics model needed: novelty comes from distilling a random function, not predicting transitions
-- [ ] The fixed target provides a stable reference signal — no moving target problem
-- [ ] Non-episodic intrinsic rewards accumulate across episodes, rewarding long-term exploration
-- [ ] Running mean/std normalization of intrinsic rewards is critical for stable training
-- [ ] RND with PPO matches or exceeds ICM at a fraction of the implementation complexity
+- No dynamics model needed: novelty comes from distilling a random function, not predicting transitions
+- The fixed target provides a stable reference signal — no moving target problem
+- Non-episodic intrinsic rewards accumulate across episodes, rewarding long-term exploration
+- Running mean/std normalization of intrinsic rewards is critical for stable training
+- RND with PPO matches or exceeds ICM at a fraction of the implementation complexity
 
 ## References
 

@@ -37,11 +37,11 @@ Implementation uses an incremental mean to avoid storing all returns.
 
 ## Key Takeaways
 
-- [ ] MC methods require complete episodes — they cannot be applied to continuing (non-episodic) tasks
-- [ ] First-visit MC: only the first occurrence of a (s, a) pair per episode is used for the update
-- [ ] No bootstrapping means no bias, but high variance — many episodes are needed
-- [ ] The incremental mean update `Q += (G - Q) / n` avoids storing all past returns
-- [ ] MC converges to the true Q-values under the policy being followed (on-policy)
+- MC methods require complete episodes — they cannot be applied to continuing (non-episodic) tasks
+- First-visit MC: only the first occurrence of a (s, a) pair per episode is used for the update
+- No bootstrapping means no bias, but high variance — many episodes are needed
+- The incremental mean update `Q += (G - Q) / n` avoids storing all past returns
+- MC converges to the true Q-values under the policy being followed (on-policy)
 
 ## References
 

@@ -47,12 +47,12 @@ pip install gymnasium[mujoco]
 
 ## Key Takeaways
 
-- [ ] The critic provides a baseline V(s) that reduces variance without biasing the gradient
-- [ ] Advantage A(s, a) = G_t - V(s_t) measures relative action quality: positive means better than average, negative means worse
-- [ ] Actor and critic share a feature backbone — this improves sample efficiency but can cause conflicting gradients
-- [ ] Entropy regularization prevents the policy from collapsing to a deterministic one too early
-- [ ] Gradient clipping prevents catastrophic updates when advantage estimates are noisy
-- [ ] A2C is on-policy: collected episodes must come from the current policy
+- The critic provides a baseline V(s) that reduces variance without biasing the gradient
+- Advantage A(s, a) = G_t - V(s_t) measures relative action quality: positive means better than average, negative means worse
+- Actor and critic share a feature backbone — this improves sample efficiency but can cause conflicting gradients
+- Entropy regularization prevents the policy from collapsing to a deterministic one too early
+- Gradient clipping prevents catastrophic updates when advantage estimates are noisy
+- A2C is on-policy: collected episodes must come from the current policy
 
 ## References
 

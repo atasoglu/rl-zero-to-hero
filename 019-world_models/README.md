@@ -38,10 +38,10 @@ Use `--stage` to run stages independently (useful for iterative improvement).
 
 ## Key Takeaways
 
-- [ ] Separating perception (V), memory (M), and control (C) enables modular world model training
-- [ ] The MDN-RNN's mixture distribution captures multimodal futures (e.g. branching roads)
-- [ ] Dream training: controllers trained in imagination can transfer to the real environment
-- [ ] The linear controller is intentionally simple — the world model does the heavy lifting
+- Separating perception (V), memory (M), and control (C) enables modular world model training
+- The MDN-RNN's mixture distribution captures multimodal futures (e.g. branching roads)
+- Dream training: controllers trained in imagination can transfer to the real environment
+- The linear controller is intentionally simple — the world model does the heavy lifting
 
 ## References
 
