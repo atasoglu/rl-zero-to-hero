@@ -76,11 +76,12 @@ Model-based RL, exploration bonuses, and learned world models. These methods clo
 |---|--------|-------------|--------------|
 | 016 | HER (Hindsight Experience Replay) | RobotFetch | Goal-conditioned RL, sparse rewards |
 | 017 | Dyna-Q | GridWorld | Model-based + model-free hybrid |
-| 018 | World Models (Ha & Schmidhuber) | CarRacing | VAE + MDN-RNN, latent imagination |
-| 019 | Dreamer v3 | Continuous control | RSSM, imagination-based training |
-| 020 | MuZero | Atari, board games | Learned model + MCTS planning |
-| 021 | Curiosity-Driven (ICM) | MontezumaRevenge | Intrinsic motivation, hard exploration |
-| 022 | RND | Atari hard exploration | Random network distillation |
+| 018 | MBPO | MuJoCo | Model-based policy optimization, short rollouts, sample efficiency |
+| 019 | World Models (Ha & Schmidhuber) | CarRacing | VAE + MDN-RNN, latent imagination |
+| 020 | Dreamer v3 | Continuous control | RSSM, imagination-based training |
+| 021 | MuZero | Atari, board games | Learned model + MCTS planning |
+| 022 | Curiosity-Driven (ICM) | MontezumaRevenge | Intrinsic motivation, hard exploration |
+| 023 | RND | Atari hard exploration | Random network distillation |
 
 ### Tier 4: Offline RL and Imitation Learning
 
@@ -88,13 +89,13 @@ Learning from fixed datasets and expert demonstrations without online environmen
 
 | # | Method | Dataset | Key Concepts |
 |---|--------|---------|--------------|
-| 023 | Behavioral Cloning | Minari / D4RL | Supervised imitation, covariate shift |
-| 024 | IRL (Inverse RL) | GridWorld | Reward inference from demos |
-| 025 | GAIL | MuJoCo | Adversarial imitation learning |
-| 026 | CQL | Minari | Offline RL, OOD pessimism |
-| 027 | IQL | Minari | Implicit Q-learning |
-| 028 | Decision Transformer | Minari | RL as sequence modeling |
-| 029 | Trajectory Transformer | Minari | Beam search planning with transformers |
+| 024 | Behavioral Cloning | Minari / D4RL | Supervised imitation, covariate shift |
+| 025 | IRL (Inverse RL) | GridWorld | Reward inference from demos |
+| 026 | GAIL | MuJoCo | Adversarial imitation learning |
+| 027 | CQL | Minari | Offline RL, OOD pessimism |
+| 028 | IQL | Minari | Implicit Q-learning |
+| 029 | Decision Transformer | Minari | RL as sequence modeling |
+| 030 | Trajectory Transformer | Minari | Beam search planning with transformers |
 
 ### Tier 5: RLHF and LLM Alignment
 
@@ -102,12 +103,14 @@ Techniques for aligning language models with human preferences. The core pipelin
 
 | # | Method | Description | Key Concepts |
 |---|--------|-------------|--------------|
-| 030 | Reward Modeling | Human preference dataset | Bradley-Terry model, reward learning |
-| 031 | RLHF (InstructGPT style) | LLM fine-tuning | RM + PPO pipeline end-to-end |
-| 032 | DPO | LLM fine-tuning | Reward-free preference optimization |
-| 033 | GRPO | LLM reasoning (DeepSeek-R1 style) | Group relative policy optimization |
-| 034 | Constitutional AI | LLM | Self-critique and revision loops |
-| 035 | RLAIF | LLM | AI feedback as preference signal |
+| 031 | Reward Modeling | Human preference dataset | Bradley-Terry model, reward learning |
+| 032 | PRM (Process Reward Model) | LLM reasoning | Step-level reward, reasoning chain supervision |
+| 033 | RLHF (InstructGPT style) | LLM fine-tuning | RM + PPO pipeline end-to-end |
+| 034 | DPO | LLM fine-tuning | Reward-free preference optimization |
+| 035 | GRPO | LLM reasoning (DeepSeek-R1 style) | Group relative policy optimization |
+| 036 | RLVR (Verifiable Rewards) | LLM math / code | Rule-based reward, outcome verification |
+| 037 | Constitutional AI | LLM | Self-critique and revision loops |
+| 038 | RLAIF | LLM | AI feedback as preference signal |
 
 ### Tier 6: Multi-Agent RL
 
@@ -115,10 +118,11 @@ Multiple agents learning simultaneously in cooperative, competitive, and mixed s
 
 | # | Method | Environment | Key Concepts |
 |---|--------|-------------|--------------|
-| 036 | IQL (Independent Q-Learning) | PettingZoo | MARL baseline, non-stationarity |
-| 037 | MADDPG | Cooperative / competitive | Centralized training, decentralized execution |
-| 038 | QMIX | SMAC (StarCraft) | Cooperative MARL, monotonic mixing |
-| 039 | Self-Play | Connect4, Chess | Competitive self-improvement, ELO |
+| 039 | IQL (Independent Q-Learning) | PettingZoo | MARL baseline, non-stationarity |
+| 040 | MAPPO | PettingZoo, SMAC | Multi-agent PPO, centralized value function |
+| 041 | MADDPG | Cooperative / competitive | Centralized training, decentralized execution |
+| 042 | QMIX | SMAC (StarCraft) | Cooperative MARL, monotonic mixing |
+| 043 | Self-Play | Connect4, Chess | Competitive self-improvement, ELO |
 
 ### Tier 7: VLA and LLM + Robotics
 
@@ -126,12 +130,14 @@ Vision-Language-Action models and language-conditioned robot policies at the fro
 
 | # | Method | Description | Key Concepts |
 |---|--------|-------------|--------------|
-| 040 | Language-Conditioned RL | BabyAI, MiniGrid | NL instruction to policy |
-| 041 | SayCan | LLM + robot primitives | Affordance scoring + LLM planning |
-| 042 | RT-1 / RT-2 style | Simulated manipulation | Robotics transformer, VL pretraining |
-| 043 | Code as Policy | LLM to executable code | Zero-shot robot control via code gen |
-| 044 | OpenVLA | Open-source VLA | Vision-language-action fine-tuning |
-| 045 | π0 (Pi-Zero) | Dexterous manipulation | Flow matching + VLA architecture |
+| 044 | Language-Conditioned RL | BabyAI, MiniGrid | NL instruction to policy |
+| 045 | SayCan | LLM + robot primitives | Affordance scoring + LLM planning |
+| 046 | RT-1 / RT-2 style | Simulated manipulation | Robotics transformer, VL pretraining |
+| 047 | Code as Policy | LLM to executable code | Zero-shot robot control via code gen |
+| 048 | ACT (Action Chunking with Transformers) | Simulated manipulation | Action chunking, temporal ensembling |
+| 049 | Diffusion Policy | Robot manipulation | Denoising diffusion for action generation, multimodal distributions |
+| 050 | OpenVLA | Open-source VLA | Vision-language-action fine-tuning |
+| 051 | π0 (Pi-Zero) | Dexterous manipulation | Flow matching + VLA architecture |
 
 ## Module Structure Reference
 
